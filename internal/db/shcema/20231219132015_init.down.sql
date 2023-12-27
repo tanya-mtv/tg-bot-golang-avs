@@ -1,0 +1,3 @@
+DROP TABLE TGUnit;
+
+DROP TABLE TGUsers;
