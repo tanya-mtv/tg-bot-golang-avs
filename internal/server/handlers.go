@@ -63,6 +63,11 @@ func (h *Handler) getRemains(ctx context.Context, b *bot.Bot, update *models.Upd
 			ChatID: update.Message.Chat.ID,
 			Text:   fmt.Sprintf("|%s|%s|%s|%s|%s|", "Cell", "Code", "Name", "EH", "Count"),
 		})
+	} else {
+		b.SendMessage(ctx, &bot.SendMessageParams{
+			ChatID: update.Message.Chat.ID,
+			Text:   fmt.Sprintf("остатки товара или ячейки %s не найдены", update.Message.Text),
+		})
 	}
 
 	for _, row := range remains {
@@ -115,6 +120,11 @@ func (h *Handler) getOrder(ctx context.Context, b *bot.Bot, update *models.Updat
 		b.SendMessage(ctx, &bot.SendMessageParams{
 			ChatID: update.Message.Chat.ID,
 			Text:   fmt.Sprintf("|%s    |%s |", "Executor", "zone"),
+		})
+	} else {
+		b.SendMessage(ctx, &bot.SendMessageParams{
+			ChatID: update.Message.Chat.ID,
+			Text:   fmt.Sprintf("Документ  %s не найден в ВМС системе", docNum),
 		})
 	}
 

@@ -10,3 +10,4 @@ docker-compose.yml
 
 #secrets
 config.yaml
+putty.yaml

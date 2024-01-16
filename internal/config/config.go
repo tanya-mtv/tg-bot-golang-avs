@@ -22,13 +22,13 @@ type Config struct {
 }
 
 func init() {
-	flag.StringVar(&configType, "config-type", "yaml", "Format of configuration file type. Supported formats is: yaml")
-	flag.StringVar(&configPath, "config", "config.yaml", "Path to configuration file")
+	flag.StringVar(&configType, "config-type", "", "Format of configuration file type. Supported formats is: yaml")
+	flag.StringVar(&configPath, "config", "", "Path to configuration file")
 }
 
 func InitConfig() (*Config, error) {
 	if configPath == "" {
-		configPathFromEnv := os.Getenv(AVS_CONFIG_PATH)
+		configPathFromEnv := os.Getenv(CONFIG_PATH)
 		if configPathFromEnv != "" {
 			configPath = configPathFromEnv
 		} else {
@@ -37,7 +37,7 @@ func InitConfig() (*Config, error) {
 	}
 	cfg := &Config{}
 
-	configType := os.Getenv(AVS_CONFIG_TYPE)
+	configType := os.Getenv(CONFIG_TYPE)
 
 	if configType == "" {
 		configType = yaml
